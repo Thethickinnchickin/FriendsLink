@@ -13,19 +13,25 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model:any = {};
 
-  constructor(private accountService: AccountService,
-    private toastr: ToastrService) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.model.username = null;
+    this.model.password = null;
   }
 
   register() {
     this.accountService.register(this.model).subscribe(response => {
       console.log(response);
       this.cancel();
-    }, err => {
-      console.log(err);
-      this.toastr.error(err.error.errors["UserName" || "Password"])
+    }, err =>  {
+      console.log(err)
+      if(err.error) {
+        this.toastr.error(err.error)       
+      } else {
+        this.toastr.error(err) 
+      }
+
     })
   }
 
