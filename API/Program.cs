@@ -1,5 +1,6 @@
 using System.Text;
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Middleware;
 using API.Services;
@@ -15,10 +16,12 @@ IWebHostEnvironment environment = builder.Environment;
 
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddDbContext<DataContext>(options => 
 {
@@ -27,6 +30,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 //Adding Token Service
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 //Adding Authetication Service
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -56,6 +61,10 @@ app.UseHttpsRedirection();
 
 app.UseCors(policy => policy
 .AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();

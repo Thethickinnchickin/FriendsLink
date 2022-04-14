@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs';
+import { User } from '../_interfaces/user';
 import { AccountService } from '../_services/account.service';
 
 
@@ -9,34 +12,50 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Input() usersFromHomeComponent: any;
   @Output() cancelRegister = new EventEmitter();
   model:any = {};
+  registerForm: FormGroup;
 
-  constructor(private accountService: AccountService, private toastr: ToastrService) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.model.username = null;
-    this.model.password = null;
+    this.initializeForm()
   }
 
-  register() {
-    this.accountService.register(this.model).subscribe(response => {
-      console.log(response);
-      this.cancel();
-    }, err =>  {
-      console.log(err)
-      if(err.error) {
-        this.toastr.error(err.error)       
-      } else {
-        this.toastr.error(err) 
-      }
-
+  initializeForm() {
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      knownAs: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      gender: ['male'],
+      password: ['', [Validators.maxLength(8),
+      Validators.minLength(4), Validators.maxLength(8)]],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
   }
 
-  cancel() {
-    this.cancelRegister.emit(false);
+  matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) => {
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null : {isMatching: true}
+    }
   }
 
+  register(model: any) {
+    return this.accountService.register(this.registerForm).pipe(
+      map((user: User) => {
+        if(user) {
+          localStorage.setItem('user', JSON.stringify(user))
+        }
+      })
+    )
+  }
+
+  cancel() {
+    this.cancelRegister.emit(false)
+  }
+
+  
 }

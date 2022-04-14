@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, ReplaySubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../_interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
 
   //Making current user an observable on login
   private currentUserSource = new ReplaySubject<User>(1);
