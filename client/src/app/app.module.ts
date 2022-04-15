@@ -20,6 +20,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
     MessagesComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    TextInputComponent
+    TextInputComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 
 
@@ -15,13 +16,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
       positionClass: 'toast-bottom-right'
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot()
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule
   ]
 })
 export class SharedModule { }
