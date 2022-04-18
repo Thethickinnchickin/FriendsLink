@@ -4,6 +4,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +16,11 @@ namespace API.Controllers
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
 
-        public AccountController(DataContext context, ITokenService tokenService) 
+        private readonly IMapper _mapper;
+
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper) 
         {
+            _mapper = mapper;
             _context = context;
             _tokenService = tokenService;
         }
@@ -30,22 +34,30 @@ namespace API.Controllers
                 return BadRequest("Username Already Taken");
             }
 
-            using var hmac = new HMACSHA512();
+            
 
-            var user = new AppUser 
+            using var hmac = new HMACSHA512();
+            
+            
+            var user = new AppUser
             {
                 UserName = registerDto.UserName.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
+                PasswordSalt = hmac.Key,
+                KnownAs = registerDto.KnownAs,
+                City = registerDto.City,
+                Country = registerDto.Country,
+                Gender = registerDto.Gender
             };
-
+ 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-
+ 
             return new UserDto
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                KnownAs = registerDto.KnownAs
             };
         }
 

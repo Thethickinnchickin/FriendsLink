@@ -6,11 +6,11 @@ import { Member } from '../_interfaces/member';
 
 
 
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     Authroization: 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
-//   })
-// }
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authroization: 'Bearer ' + JSON.parse(localStorage.getItem('user')).token
+  })
+}
 
 
 @Injectable({
@@ -22,10 +22,10 @@ export class MembersService {
   constructor(private http: HttpClient) { }
 
   getMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(this.baseUrl + 'users');
+    return this.http.get<Member[]>(this.baseUrl + 'users', httpOptions);
   }
 
   getMember(username: string) {
-    return this.http.get<Member>(this.baseUrl + 'users/' + username)
+    return this.http.get<Member>(this.baseUrl + 'users/' + username, httpOptions)
   }
 }
