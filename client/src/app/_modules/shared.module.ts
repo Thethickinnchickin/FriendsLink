@@ -4,7 +4,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -17,14 +19,20 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
     }),
     FormsModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TabsModule.forRoot(),
+    NgxGalleryModule,
+    NgxSpinnerModule
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     FormsModule,
     ReactiveFormsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    TabsModule,
+    NgxGalleryModule,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }
