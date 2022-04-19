@@ -24,7 +24,6 @@ export class AccountService {
         if (user) {
           //Setting user in local storage 
           this.setCurrentUser(user);
-          localStorage.setItem('user', JSON.stringify(user));
         }
       })
     );
@@ -37,7 +36,6 @@ export class AccountService {
 
   //On User Logout
   logout() {
-    localStorage.removeItem('user')
     this.currentUserSource.next(null)
   }
 

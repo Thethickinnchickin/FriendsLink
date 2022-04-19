@@ -29,7 +29,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 //Adding Token Service
+builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
