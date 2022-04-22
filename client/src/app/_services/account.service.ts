@@ -23,6 +23,7 @@ export class AccountService {
         const user = response;
         if (user) {
           //Setting user in local storage 
+          localStorage.setItem('user', JSON.stringify(user))
           this.setCurrentUser(user);
         }
       })
@@ -36,6 +37,7 @@ export class AccountService {
 
   //On User Logout
   logout() {
+    localStorage.removeItem('user');
     this.currentUserSource.next(null)
   }
 
@@ -45,7 +47,7 @@ export class AccountService {
       map((response: User)=> {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('user', JSON.stringify(user))
           this.currentUserSource.next(user);
         }
         return user;

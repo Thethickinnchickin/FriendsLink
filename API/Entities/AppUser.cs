@@ -30,7 +30,7 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
 
-        public ICollection<Photos> Photos { get; set;}
+        public ICollection<Photos> Photos { get; set;} = new List<Photos>();
 
         //Method to get the age of the User
         public int GetAge()

@@ -9,6 +9,7 @@ using AutoMapper;
 using API.DTOs;
 using System.Security.Claims;
 using API.Extensions;
+using API.Helpers;
 
 namespace API.Controllers
 {
@@ -30,11 +31,23 @@ namespace API.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
+        
+            
 
-            var usersToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+
+            if(string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = user.Gender == "male" ? "female" : "male";
+            }
+
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.TotalPages,
+             users.PageSize, users.TotalCount);
 
             return Ok(users);
         }
