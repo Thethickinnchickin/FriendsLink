@@ -32,11 +32,9 @@ namespace API.Entities
 
         public ICollection<Photos> Photos { get; set;} = new List<Photos>();
 
-        //Method to get the age of the User
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
+        public ICollection<UserLike> LikedByUsers { get; set;}
+
+        public ICollection<UserLike> LikedUsers { get; set;}
 
 
     }
