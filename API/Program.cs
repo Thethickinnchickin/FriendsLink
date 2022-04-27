@@ -32,6 +32,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<LogUserActivity>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserLikesRepository, LikesRepository>();
