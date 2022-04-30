@@ -29,7 +29,6 @@ namespace API.Controllers
             _photoService = photoService;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
@@ -37,6 +36,8 @@ namespace API.Controllers
             
 
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            userParams.CurrentUsername = User.GetUsername();
 
 
             if(string.IsNullOrEmpty(userParams.Gender))
@@ -51,7 +52,9 @@ namespace API.Controllers
 
             return Ok(users);
         }
-        [HttpGet("{username}")]
+
+        [Authorize(Roles = "Member")]
+        [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);

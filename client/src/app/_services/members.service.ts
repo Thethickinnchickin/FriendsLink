@@ -57,6 +57,7 @@ export class MembersService {
   getMembers(userParams: UserParams){
 
     //Caching members 
+    userParams.currentUsername = this.user.username;
     var response = this.memberCache.get(Object.values(userParams).join('-'))
     if(response) {
       return of(response);
@@ -71,6 +72,7 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
 
     params = params.append('orderBy', userParams.orderBy);
+    params = params.append('currentUsername', this.user.username);
     console.log(params)
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
