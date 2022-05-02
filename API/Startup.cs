@@ -8,6 +8,7 @@ using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
+using API.SignalR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,6 +54,7 @@ namespace API
 
 
             //Adding Token Service
+            services.AddSingleton<PresenceTracker>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<LogUserActivity>();
@@ -74,6 +76,8 @@ namespace API
                 .AddRoleValidator<RoleValidator<AppRole>>()
                 .AddEntityFrameworkStores<DataContext>();
 
+            services.AddSignalR();
+
             services.AddAuthorization(opt => 
             {
                 opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
@@ -90,6 +94,24 @@ namespace API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
                     ValidateIssuer = false,
                     ValidateAudience = false
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context => 
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+
+                        var path = context.HttpContext.Request.Path;
+
+                        if (!string.IsNullOrEmpty(accessToken) 
+                        && path.StartsWithSegments("/hubs"))
+                        {
+                            context.Token = accessToken;
+                        }
+
+                        return Task.CompletedTask;
+                    }
                 };
             });
 
@@ -111,7 +133,10 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseCors(policy => policy
-            .AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins("https://localhost:4200"));
 
             app.UseRouting();
 
@@ -124,6 +149,8 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
             });
         }
     }
