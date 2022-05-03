@@ -2,6 +2,7 @@
     {
       "UserName": "Louella",
       "Gender": "female",
+      "PhotoUrl": "https://randomuser.me/api/portraits/women/3.jpg",
       "DateOfBirth": "1962-03-08",
       "KnownAs": "Louella",
       "Created": "2019-12-01",
@@ -21,6 +22,7 @@
     {
       "UserName": "Tamera",
       "Gender": "female",
+      "PhotoUrl": "https://randomuser.me/api/portraits/women/7.jpg",
       "DateOfBirth": "1992-01-27",
       "KnownAs": "Tamera",
       "Created": "2019-12-20",
@@ -40,6 +42,7 @@
     {
       "UserName": "Liz",
       "Gender": "female",
+      "PhotoUrl": "https://randomuser.me/api/portraits/women/36.jpg",
       "DateOfBirth": "1956-09-13",
       "KnownAs": "Liz",
       "Created": "2020-01-19",
@@ -59,6 +62,7 @@
     {
       "UserName": "Odessa",
       "Gender": "female",
+      "PhotoUrl": "https://randomuser.me/api/portraits/women/7.jpg",
       "DateOfBirth": "1966-02-22",
       "KnownAs": "Odessa",
       "Created": "2020-02-19",
@@ -78,6 +82,7 @@
     {
       "UserName": "Nellie",
       "Gender": "female",
+      "PhotoUrl": "https://randomuser.me/api/portraits/women/31.jpg",
       "DateOfBirth": "1975-06-08",
       "KnownAs": "Nellie",
       "Created": "2019-12-15",
@@ -97,6 +102,7 @@
     {
         "UserName": "Marguerite",
         "Gender": "male",
+        "PhotoUrl": "https://randomuser.me/api/portraits/men/10.jpg",
         "DateOfBirth": "1961-10-24",
         "KnownAs": "Marguerite",
         "Created": "2019-11-19",
@@ -116,6 +122,7 @@
       {
         "UserName": "Penelope",
         "Gender": "male",
+        "PhotoUrl": "https://randomuser.me/api/portraits/men/37.jpg",
         "DateOfBirth": "1963-12-02",
         "KnownAs": "Penelope",
         "Created": "2019-02-01",
@@ -135,6 +142,7 @@
       {
         "UserName": "Sandra",
         "Gender": "male",
+        "PhotoUrl": "https://randomuser.me/api/portraits/men/8.jpg",
         "DateOfBirth": "1995-04-03",
         "KnownAs": "Sandra",
         "Created": "2020-05-07",
@@ -154,6 +162,7 @@
       {
         "UserName": "Shelly",
         "Gender": "male",
+        "PhotoUrl": "https://randomuser.me/api/portraits/men/70.jpg",
         "DateOfBirth": "1952-01-26",
         "KnownAs": "Shelly",
         "Created": "2019-12-23",
@@ -173,6 +182,7 @@
       {
         "UserName": "Ruby",
         "Gender": "male",
+        "PhotoUrl": "https://randomuser.me/api/portraits/men/1.jpg",
         "DateOfBirth": "1961-09-07",
         "KnownAs": "Ruby",
         "Created": "2019-05-07",

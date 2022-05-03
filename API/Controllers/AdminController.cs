@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,9 @@ namespace API.Controllers
 
         private readonly UserManager<AppUser> _userManager;
 
-        public AdminController(UserManager<AppUser> userManager)
+
+        public AdminController(UserManager<AppUser> userManager,
+        IPhotoService photoService)
         {
             _userManager = userManager;
         }
@@ -66,7 +69,8 @@ namespace API.Controllers
         [HttpGet("photos-to-moderate")]
         public ActionResult GetPhotosForModeration()
         {
-            return Ok("Onlt admins can see this");
+            return BadRequest("Uh Oh");
+
         }
     }
 }

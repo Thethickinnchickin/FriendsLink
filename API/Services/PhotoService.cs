@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Data;
 using API.Helpers;
 using API.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace API.Services
@@ -15,7 +17,10 @@ namespace API.Services
 
         private readonly Cloudinary _cloudinary;
 
-        public PhotoService(IOptions<CloudinarySettings> config)
+        private readonly DataContext _context;
+
+        public PhotoService(IOptions<CloudinarySettings> config,
+        DataContext context)
         {
             var acc = new Account 
             (
@@ -25,6 +30,8 @@ namespace API.Services
             );
 
             _cloudinary = new Cloudinary(acc);
+
+            _context = context;
 
         }
 
@@ -62,5 +69,7 @@ namespace API.Services
             return result;
    
         }
+
+
     }
 }

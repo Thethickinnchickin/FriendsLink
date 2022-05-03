@@ -58,10 +58,8 @@ namespace API
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<LogUserActivity>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserLikesRepository, LikesRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 

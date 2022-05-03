@@ -37,6 +37,8 @@ export class MessageService {
       this.messageThreadSource.next(messages);
     })
 
+
+
     this.hubConnection.on('NewMessage', message => {
       this.messageThread$.pipe(take(1)).subscribe(messages => {
         this.messageThreadSource.next([...messages, message])
@@ -67,7 +69,7 @@ export class MessageService {
 
   getMessages(pageNumber, pageSize, container) {
     let params = getPaginationHeaders(pageNumber, pageSize);
-    params = params.append('Container', container);
+    params = params.append('container', container);
     return getPaginatedResult<Message[]>(this.baseUrl + 'message', params, this.http);
   }
 
