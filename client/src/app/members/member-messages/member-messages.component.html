@@ -6,31 +6,36 @@
 
         <ul 
         #scrollMe
-        style="overflow: scroll; height: 500px;"
+        style="overflow: scroll; height: 500px; overflow-x: hidden;"
         [scrollTop]="scrollMe.scrollHeight"
         *ngIf="(messageService.messageThread$ | async).length > 0" class="chat">
             <li *ngFor="let message of (messageService.messageThread$ | async)">
                 <div>
                     <span class="chat-img float-right">
-                        <img src="{{message.senderPhotoUrl || './assest/user.png'}}"
+                        <img src="{{message.senderPhotoUrl || './assets/user.png'}}"
                          alt="{{message.senderUsername}}" class="rounded-circle">
                     </span>
                     <div class="chat-body">
                         <div class="header">
                             <small class="text-muted">
-                                <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
+                                <span class="fa fa-clock-o"> Sent {{message.messageSent | date:'MM-dd h:mm'}}</span>
                                 <span class="text-danger" *ngIf="message.dateRead == null 
                                 && message.senderUsername !== username">
                                     (unread)
                                 </span>
                                 <span class="text-success" *ngIf="message.dateRead  != null
                                 && message.senderUsername !== username">
-                                    (read {{message.dateRead | timeago}})
+                                    (read)
                                 </span>
                                 
                             </small>
                         </div>
-                        <p>{{message.content}}</p>
+                        <div class="speech-bubble">
+                            <p>{{message.content}}</p>   
+                        </div>
+ 
+                        
+  
                     </div>
                 </div>
             </li>
@@ -42,6 +47,7 @@
             <div class="input-group" >
                 <input type="text" 
                 [ngModelOptions]="{standalone: true }"
+         
                 required
                 [(ngModel)]="messageContent"
                 class="form-control input-sm" placeholder="Send a private message">

@@ -54,6 +54,7 @@ export class AccountService {
       map((response: User)=> {
         const user = response;
         if (user) {
+          this.presence.createHubConnection(user);
           localStorage.setItem('user', JSON.stringify(user))
           this.currentUserSource.next(user);
         }

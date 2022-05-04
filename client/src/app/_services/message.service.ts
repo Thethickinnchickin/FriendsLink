@@ -45,16 +45,21 @@ export class MessageService {
       })
     })
 
+    
+
     this.hubConnection.on('UpdatedGroup', (group: Group) => {
       //checking if the user is connected to the group
       if (group.connections.some(x => x.username === otherUsername))
       {
+        this.getMessageThread(otherUsername);
         this.messageThread$.pipe(take(1)).subscribe(messages => {
           messages.forEach(message => {
             if (!message.dateRead) {
+              console.log(message)
               message.dateRead = new Date(Date.now())
             }
           })
+          this.messageThreadSource.next([...messages])
         })
       }
     })

@@ -66,7 +66,6 @@ namespace API.Data
                 .WithMany( m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.ApplyUtcDateTimeConverter();
         }
     }
 
@@ -80,7 +79,7 @@ namespace API.Data
         private static readonly ValueConverter<DateTime, DateTime> UtcNullableConverter = 
             new ValueConverter<DateTime, DateTime>(v => v, v => v == null ? v : DateTime.SpecifyKind(v, DateTimeKind.Utc));
 
-        public static PropertyBuilder<TProperty> IsUtc<TProperty>(this PropertyBuilder<TProperty> builder) =>
+        public static PropertyBuilder<TProperty> IsUtc<TProperty>(this PropertyBuilder<TProperty> builder, Boolean isUtc = true) =>
             builder.HasAnnotation(IsUtcAnnotation, isUtc);
 
         public static Boolean isUtc(this IMutableProperty property) => 

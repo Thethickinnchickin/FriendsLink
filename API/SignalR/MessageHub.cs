@@ -42,7 +42,7 @@ namespace API.SignalR
             //Adding group and connections
             var group = await AddToGroup(groupName);
 
-            await Clients.Group(groupName).SendAsync("UpdateGroup", group);
+            await Clients.Group(groupName).SendAsync("UpdatedGroup", group);
 
             //Getting Messages between both users from repository
             var messages = await _unitOfWork.messageRepository

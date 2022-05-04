@@ -4,7 +4,7 @@
 
 namespace API.Data.Migrations
 {
-    public partial class PhotoApprovalAdded : Migration
+    public partial class MessageHubAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

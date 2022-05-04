@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220502065035_PhotoApprovalAdded")]
-    partial class PhotoApprovalAdded
+    [Migration("20220504031608_MessageHubAdded")]
+    partial class MessageHubAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
