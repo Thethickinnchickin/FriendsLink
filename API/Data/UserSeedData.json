@@ -14,8 +14,8 @@
       "Country": "Macedonia",
       "Photos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/3.jpg",
-          "isMain": true
+          "Url": "https://randomuser.me/api/portraits/women/3.jpg",
+          "IsMain": true
         }
       ]
     },
@@ -34,8 +34,8 @@
       "Country": "Brunei Darussalam",
       "Photos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/7.jpg",
-          "isMain": true
+          "Url": "https://randomuser.me/api/portraits/women/7.jpg",
+          "IsMain": true
         }
       ]
     },
@@ -54,8 +54,8 @@
       "Country": "Cyprus",
       "Photos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/36.jpg",
-          "isMain": true
+          "Url": "https://randomuser.me/api/portraits/women/36.jpg",
+          "IsMain": true
         }
       ]
     },
@@ -74,8 +74,8 @@
       "Country": "Costa Rica",
       "Photos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/7.jpg",
-          "isMain": true
+          "Url": "https://randomuser.me/api/portraits/women/7.jpg",
+          "IsMain": true
         }
       ]
     },
@@ -94,8 +94,8 @@
       "Country": "Russian Federation",
       "Photos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/31.jpg",
-          "isMain": true
+          "Url": "https://randomuser.me/api/portraits/women/31.jpg",
+          "IsMain": true
         }
       ]
     },
@@ -114,8 +114,8 @@
         "Country": "East Timor",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/10.jpg",
-            "isMain": true
+            "Url": "https://randomuser.me/api/portraits/men/10.jpg",
+            "IsMain": true
           }
         ]
       },
@@ -134,8 +134,8 @@
         "Country": "Monaco",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/37.jpg",
-            "isMain": true
+            "Url": "https://randomuser.me/api/portraits/men/37.jpg",
+            "IsMain": true
           }
         ]
       },
@@ -154,8 +154,8 @@
         "Country": "S. Georgia and S. Sandwich Isls.",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/8.jpg",
-            "isMain": true
+            "Url": "https://randomuser.me/api/portraits/men/8.jpg",
+            "IsMain": true
           }
         ]
       },
@@ -174,8 +174,8 @@
         "Country": "Nauru",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/70.jpg",
-            "isMain": true
+            "Url": "https://randomuser.me/api/portraits/men/70.jpg",
+            "IsMain": true
           }
         ]
       },
@@ -194,8 +194,8 @@
         "Country": "Morocco",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/1.jpg",
-            "isMain": true
+            "Url": "https://randomuser.me/api/portraits/men/1.jpg",
+            "IsMain": true
           }
         ]
       }
