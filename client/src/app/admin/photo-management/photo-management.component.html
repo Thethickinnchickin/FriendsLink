@@ -1,1 +1,10 @@
-<p>photo-management works!</p>
+<div *ngFor="let photo of unapprovedPhotos" class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{photo.url}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">By </h5>
+    </div>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>

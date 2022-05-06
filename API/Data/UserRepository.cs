@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
+        
+
 
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
@@ -64,6 +67,7 @@ namespace API.Data
             .ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking(),
              userParams.PageNumber, userParams.PageSize);
         }
+
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {

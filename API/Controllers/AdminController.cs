@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -16,10 +18,13 @@ namespace API.Controllers
 
         private readonly UserManager<AppUser> _userManager;
 
+        private readonly IUnitOfWork _unitOfWork;
+
 
         public AdminController(UserManager<AppUser> userManager,
-        IPhotoService photoService)
+        IPhotoService photoService, IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
 
@@ -65,12 +70,19 @@ namespace API.Controllers
 
         }
 
-        [Authorize(Policy = "ModeratePhotoRole")]
-        [HttpGet("photos-to-moderate")]
-        public ActionResult GetPhotosForModeration()
+        [HttpGet("photos-to-approve")]
+        public async Task<ActionResult<IEnumerable>> GetUnapprovedPhotos() 
         {
-            return BadRequest("Uh Oh");
-
+            var users = await _unitOfWork.userRepository.GetUsersAsync();
+            return Ok(users);
         }
+
+        // [Authorize(Policy = "ModeratePhotoRole")]
+        // [HttpGet("photos-to-moderate")]
+        // public ActionResult GetPhotosForModeration()
+        // {
+        //     return BadRequest("Uh Oh");
+
+        // }
     }
 }

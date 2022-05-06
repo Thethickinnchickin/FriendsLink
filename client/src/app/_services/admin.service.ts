@@ -16,6 +16,10 @@ export class AdminService {
     return this.http.get<Partial<User>[]>(this.baseUrl + 'admin/users-with-roles');
   }
 
+  getUnapprovedPhtots() {
+    return this.http.get<any[]>(this.baseUrl + 'admin/photos-to-approve');
+  }
+
   updateUserRoles(username: string, roles: string[]) {
     return this.http.post(this.baseUrl + 'admin/edit-roles' + username + '?roles=' + roles, {});
   }
