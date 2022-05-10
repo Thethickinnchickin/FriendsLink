@@ -10,8 +10,7 @@ import { AdminService } from 'src/app/_services/admin.service';
 })
 export class PhotoManagementComponent implements OnInit {
   users: any[];
-  approvedPhotos: Photo[];
-  unapprovedPhotos: Photo[];
+  photos: Photo[];
 
   constructor(private adminService: AdminService) { }
 
@@ -25,30 +24,19 @@ export class PhotoManagementComponent implements OnInit {
       this.users = users;
       this.getUsersPhotos(users);
     });
-    console.log(this.unapprovedPhotos)
   }
 
   getUsersPhotos(users: any){
-    var photos: Photo[] = [];
-    this.approvedPhotos = [];
-    this.unapprovedPhotos = [];
+      this.photos = [];
       for(let user of users)
       {
-        for(let photo of user.photos)
-        {
-          photos.push(photo);            
-        }
+          for(let photo of user.photos)
+          {
+            this.photos.push(photo);            
+          }
+      
+
       }
-      for(let photo of photos)
-      {
-
-        if(photo.isApproved)
-        {
-          this.approvedPhotos.push(photo);
-        } else {
-          this.unapprovedPhotos.push(photo);
-        }
-      } 
+        
   }
-
 }

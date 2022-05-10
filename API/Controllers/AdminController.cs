@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -77,12 +78,30 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        // [Authorize(Policy = "ModeratePhotoRole")]
-        // [HttpGet("photos-to-moderate")]
-        // public ActionResult GetPhotosForModeration()
-        // {
-        //     return BadRequest("Uh Oh");
+        //Route to moderate Photos to be either approved or unnapproved based on route params
 
-        // }
+        [HttpPut("moderate-photo")]
+        public async Task<ActionResult> GetPhotosForModeration(ModeratePhotoDto moderatePhotoDto)
+        {
+            var user = await _unitOfWork.userRepository.GetUserByUsernameAsync(moderatePhotoDto.UserName);
+            var photo = user.Photos.FirstOrDefault(x => x.Id == moderatePhotoDto.Id);
+            if(moderatePhotoDto.IsApproved)
+            {
+                photo.IsApproved = false;
+                if(await _unitOfWork.Complete()){
+                    return Ok("Unapproved Photo");
+                }
+                return BadRequest("Failed to UnApprove Photo");
+            }
+            else
+            {
+                photo.IsApproved = true;
+                if(await _unitOfWork.Complete())
+                {
+                    return Ok("Approved Photo");                    
+                }
+                return BadRequest("Failed to Approve Photo");
+            }
+        }
     }
 }

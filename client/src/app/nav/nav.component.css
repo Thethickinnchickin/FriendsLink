@@ -2,6 +2,14 @@
     cursor: pointer;
 }
 
+.navbar {
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(4px);
+    -o-backdrop-filter: blur(4px);
+    -moz-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
 img {
     max-height: 50px;
     border: 2px solid #fff;

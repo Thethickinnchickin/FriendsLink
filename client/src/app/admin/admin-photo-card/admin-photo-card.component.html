@@ -1,0 +1,16 @@
+<div class="card mb-4">
+    <div *ngFor="let photo of photos" class="card-img-wrapper">
+        <div *ngIf="!photo.isApproved">
+            <img src="{{photo.url}}" alt="" class="card-img-top">
+            <button (click)="moderatePhoto(photo)" class="btn text-center btn-primary">Approve Photo</button>
+        </div>
+        
+    </div>
+    <div class="card-body p-1">
+        <h6 class="card-title text-center mb-1">
+            {{user.userName}}
+        </h6>
+    </div>
+</div>
+
+

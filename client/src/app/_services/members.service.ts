@@ -73,7 +73,6 @@ export class MembersService {
 
     params = params.append('orderBy', userParams.orderBy);
     params = params.append('currentUsername', this.user.username);
-    console.log(params)
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
       map(response => {

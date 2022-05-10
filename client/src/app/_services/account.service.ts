@@ -54,6 +54,11 @@ export class AccountService {
       map((response: User)=> {
         const user = response;
         if (user) {
+
+          if(localStorage.getItem('user') !== null){
+            this.presence.stopHubConnection();
+            localStorage.removeItem('user');
+          }
           this.presence.createHubConnection(user);
           localStorage.setItem('user', JSON.stringify(user))
           this.currentUserSource.next(user);
