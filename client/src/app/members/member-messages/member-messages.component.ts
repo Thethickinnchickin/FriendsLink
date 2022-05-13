@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { moment } from 'ngx-bootstrap/chronos/testing/chain';
 import { Message } from 'src/app/_interfaces/message';
 import { MessageService } from 'src/app/_services/message.service';
@@ -25,11 +26,13 @@ export class MemberMessagesComponent implements OnInit {
 
   }
 
+
   sendMessage() {
     this.messageService.sendMessage(this.username, this.messageContent).then(() => {
-      this.messageContent = '';
       this.messageForm.reset();
-    })
+      this.messageContent=''
+    }) 
+
   }
 
 

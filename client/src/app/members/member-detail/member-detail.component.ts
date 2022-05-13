@@ -24,6 +24,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   activeTab: TabDirective;
   messages: Message[] = [];
   user: User;
+  loading: boolean = false;
 
   constructor(public presence: PresenceService, private membersService: MembersService,
     public messageService: MessageService, private accountService: AccountService,
@@ -64,11 +65,15 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   getImages(): NgxGalleryImage[] {
     const imageUrls = [];
     for (const photo of this.member.photos) {
-      imageUrls.push({
-        small: photo?.url,
-        medium: photo?.url,
-        big: photo?.url
-      })
+      console.log(photo);
+      if(photo.isApproved) {
+        imageUrls.push({
+          small: photo?.url,
+          medium: photo?.url,
+          big: photo?.url
+        })        
+      }
+
     }
     return imageUrls;
   }
@@ -82,7 +87,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   loadMessages() {
     this.messageService.getMessageThread(this.member.userName).subscribe(messages => {
+      this.loading = true;
       this.messages = messages;
+      this.loading = false;
     })
   }
 

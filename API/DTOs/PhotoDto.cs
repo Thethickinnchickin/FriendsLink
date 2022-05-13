@@ -8,5 +8,7 @@ namespace API.DTOs
 
         public bool IsMain {get; set; }
 
+        public bool IsApproved { get; set; }
+
     }
 }
